@@ -1,0 +1,28 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /home/ubuntu/Pipeline-Demo-Next.js/aws-codepipeline-next.js-demo-app
+    overwrite: true
+file_exists_behavior: OVERWRITE
+
+permissions:
+  - object: /home/ubuntu/Pipeline-Demo-Next.js/aws-codepipeline-next.js-demo-app/scripts
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+    mode: 777
+    type : 
+      - file
+
+hooks:
+
+  BeforeInstall:
+
+  AfterInstall:
+
+  ApplicationStart:
+    - location: scripts/app_start.sh
+      timeout: 2500
+      runas: ubuntu
